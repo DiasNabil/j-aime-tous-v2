@@ -1,0 +1,74 @@
+{
+  "kind": "collectionType",
+  "collectionName": "invoices",
+  "info": {
+    "singularName": "invoice",
+    "pluralName": "invoices",
+    "displayName": "invoices",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ordering": {
+      "type": "uid"
+    },
+    "employee": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "paymentMethod": {
+      "type": "enumeration",
+      "enum": [
+        "especes",
+        "carte bancaire"
+      ]
+    },
+    "shipping": {
+      "type": "enumeration",
+      "enum": [
+        "retrait magasin",
+        "livraison"
+      ]
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "confirmée",
+        "payée",
+        "préparation",
+        "prêt retrait",
+        "prêt livraison",
+        "en cours de livraison",
+        "livrée",
+        "terminée",
+        "annulée"
+      ]
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "commande",
+        "achat magasin "
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "mail": {
+      "type": "email"
+    },
+    "phone": {
+      "type": "biginteger"
+    },
+    "address": {
+      "type": "text"
+    },
+    "products": {
+      "type": "json"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+﻿name;stock;price;Image;reference
+Lait demi-écremé;200;20;http://projets.local/api-wp/wp-content/uploads/2023/05/lait.jpg;1
+yaourt ;201;11,99;http://projets.local/api-wp/wp-content/uploads/2023/05/yaourt.jpg;2
+creme fraiche ;202;24,99;http://projets.local/api-wp/wp-content/uploads/2023/05/creme.jpg;3
+raclette;203;34,99;http://projets.local/api-wp/wp-content/uploads/2023/05/FROMAGE.jpg;4
+beurre;204;37,49;http://projets.local/api-wp/wp-content/uploads/2023/05/beuure.jpg;5
+viande haché;205;43,28;http://projets.local/api-wp/wp-content/uploads/2023/05/viandes-haches.jpg;6
+poulet ;206;49,08;http://projets.local/api-wp/wp-content/uploads/2023/05/poulet.jpg;7
+merguez;207;54,88;http://projets.local/api-wp/wp-content/uploads/2023/05/merguez.jpg;8
+dinde farci;208;60,67;http://projets.local/api-wp/wp-content/uploads/2023/05/dinde2.jpg;9
+bacon de dinde;209;66,47;http://projets.local/api-wp/wp-content/uploads/2023/05/dinde.jpg;10
+tomates;210;72,27;http://projets.local/api-wp/wp-content/uploads/2023/05/tomates.jpg;11
+kiwi;211;78,06;http://projets.local/api-wp/wp-content/uploads/2023/05/kiwi.jpg;12
+brocoli;212;83,86;http://projets.local/api-wp/wp-content/uploads/2023/05/brocoli.jpg;13
+banane;213;89,66;http://projets.local/api-wp/wp-content/uploads/2023/05/banane.jpg;14
+riz;214;95,46;http://projets.local/api-wp/wp-content/uploads/2023/05/riz.jpg;15
+pates;215;101,25;http://projets.local/api-wp/wp-content/uploads/2023/05/pates.jpg;16
+haricot verts;216;107,05;http://projets.local/api-wp/wp-content/uploads/2023/05/conserve.jpg;17
+cacahuetes;217;112,85;http://projets.local/api-wp/wp-content/uploads/2023/05/cacahuetes.jpg;18
+chips;218;118,64;http://projets.local/api-wp/wp-content/uploads/2023/05/chips.jpg;19
+snikers;219;124,44;http://projets.local/api-wp/wp-content/uploads/2023/05/snikers.jpg;20
+cereales;220;130,24;http://projets.local/api-wp/wp-content/uploads/2023/05/cereales.jpg;21
+chocolat;221;136,03;http://projets.local/api-wp/wp-content/uploads/2023/05/chocolat.jpg;22
+cookies;222;141,83;http://projets.local/api-wp/wp-content/uploads/2023/05/cookies.jpg;23
+creme glacé vanille;223;147,63;http://projets.local/api-wp/wp-content/uploads/2023/05/glace.jpg;24
+cone glace extreme;224;153,43;http://projets.local/api-wp/wp-content/uploads/2023/05/glace2.jpg;25
+fruit rouge melange;225;159,22;http://projets.local/api-wp/wp-content/uploads/2023/05/fruit-rouge.jpg;26
+couscous;226;165,02;http://projets.local/api-wp/wp-content/uploads/2023/05/couscous-surgele.jpg;27
+nuggets;227;170,82;http://projets.local/api-wp/wp-content/uploads/2023/05/nuggets.jpg;28
+oasis;228;176,61;http://projets.local/api-wp/wp-content/uploads/2023/05/oasis.jpg;29
+lipton;229;182,41;http://projets.local/api-wp/wp-content/uploads/2023/05/lipton.jpg;30
+eau;230;188,21;http://projets.local/api-wp/wp-content/uploads/2023/05/eau.jpg;31
+fruit shoot;231;194;http://projets.local/api-wp/wp-content/uploads/2023/05/fruitshoot.jpg;32
+monster;232;199,8;http://projets.local/api-wp/wp-content/uploads/2023/05/monster.jpg;33
+gel;233;205,6;http://projets.local/api-wp/wp-content/uploads/2023/05/gel.jpg;34
+dentifrice;234;211,4;http://projets.local/api-wp/wp-content/uploads/2023/05/dentifrice.jpg;35
+rasoir;235;217,19;http://projets.local/api-wp/wp-content/uploads/2023/05/rasoir.jpg;36
+shampoing;236;222,99;http://projets.local/api-wp/wp-content/uploads/2023/05/shampoing.jpg;37
+lait corps hydratant;237;228,79;http://projets.local/api-wp/wp-content/uploads/2023/05/creme-corps.jpg;38
+balai serpillere;238;234,58;http://projets.local/api-wp/wp-content/uploads/2023/05/balai.jpg;39
+nettoyant vitre;239;240,38;http://projets.local/api-wp/wp-content/uploads/2023/05/netooyant.jpg;40
+liquide vaisselle;240;246,18;http://projets.local/api-wp/wp-content/uploads/2023/05/liquide-vaisselle.jpg;41
+eponge;241;251,97;http://projets.local/api-wp/wp-content/uploads/2023/05/eponge.jpg;42
+anti volant, mouche, moustique ;242;257,77;http://projets.local/api-wp/wp-content/uploads/2023/05/insecticide.jpg;43
