@@ -1,5 +1,5 @@
 
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Divider, Skeleton} from "@nextui-org/react";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Divider, Skeleton, Link} from "@nextui-org/react";
 import CartProduct from "./CartProduct";
 import { Suspense, useContext, useState } from "react";
 import { CartContext } from "@/app/providers";
@@ -49,12 +49,16 @@ export default function CartModal({isOpen, onOpenChange}) {
                   {cart.total > 0 ? formatPrice(cart.total) : 0 } 
                   <span className="font-semibold"> KMF</span>
                 </p>
-                <Button color="primary" className="font-semibold" onPress={onClose} isDisabled={validCart}>
-                  { cart.items > 0 ?
-                    'Valider Panier' : 
-                    'Continuer Achat'
-                  }
-                </Button>
+                {
+                  cart.items > 0 ? 
+                  <Button as={Link} href='/checkout' color="primary" className="font-semibold" isDisabled={validCart}>
+                    Valider Panier
+                  </Button>
+                  : 
+                  <Button color="primary" className="font-semibold" onPress={onClose} isDisabled={validCart}>
+                    Continuer Achat
+                  </Button>
+                }
               </ModalFooter>
             </>
           )}

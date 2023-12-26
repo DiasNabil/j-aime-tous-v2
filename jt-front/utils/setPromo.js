@@ -1,5 +1,3 @@
-import formatPrice from "./formatPrice"
-
 export default function setPromo(products){
 
     const array = products.map(prod => {

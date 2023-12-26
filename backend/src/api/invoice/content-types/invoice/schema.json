@@ -12,9 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "ordering": {
-      "type": "uid"
-    },
     "employee": {
       "type": "relation",
       "relation": "oneToOne",
@@ -55,7 +52,7 @@
         "achat magasin "
       ]
     },
-    "name": {
+    "lastName": {
       "type": "string"
     },
     "mail": {
@@ -67,8 +64,11 @@
     "address": {
       "type": "text"
     },
-    "products": {
+    "cart": {
       "type": "json"
+    },
+    "firstName": {
+      "type": "string"
     }
   }
 }

@@ -725,7 +725,6 @@ export interface ApiInvoiceInvoice extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    ordering: Attribute.UID;
     employee: Attribute.Relation<
       'api::invoice.invoice',
       'oneToOne',
@@ -747,11 +746,12 @@ export interface ApiInvoiceInvoice extends Schema.CollectionType {
       ]
     >;
     type: Attribute.Enumeration<['commande', 'achat magasin ']>;
-    name: Attribute.String;
+    lastName: Attribute.String;
     mail: Attribute.Email;
     phone: Attribute.BigInteger;
     address: Attribute.Text;
-    products: Attribute.JSON;
+    cart: Attribute.JSON;
+    firstName: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

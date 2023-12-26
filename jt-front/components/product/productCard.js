@@ -7,6 +7,7 @@ import { Suspense, useContext, useEffect, useState } from "react"
 
 
 export default function ProductCard({product}){
+    const [input, setInput] = useState(0)
     const {cart, addToCart, removeFromCart} = useContext(CartContext)
     const [prod , setProd] = useState({
         ...product,
@@ -15,6 +16,7 @@ export default function ProductCard({product}){
      })
 
     function setQuantity(value){
+        setInput(value)
         let updateProd = {...prod, quantity: value}
         setProd(updateProd)
 
@@ -39,6 +41,11 @@ export default function ProductCard({product}){
                 ...prod,
                 quantity: isItemInCart.quantity
             })
+        }else{
+            if(input !== ''){
+
+                setProd({...prod, quantity: 0})
+            }
         }
     }, [cart])
 

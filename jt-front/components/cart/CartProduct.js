@@ -2,6 +2,8 @@ import { CartContext } from "@/app/providers";
 import formatPrice from "@/utils/formatPrice";
 import {Card, CardBody, Image, CardFooter, Divider, Chip, Input} from "@nextui-org/react";
 import { useContext, useState } from "react";
+import { RxCross1 } from "react-icons/rx";
+
 
 export default function CartProduct({prod, setValidCart}) {
   
@@ -15,7 +17,7 @@ export default function CartProduct({prod, setValidCart}) {
 
     updateProd = {...prod, quantity: Number(value)}
     
-    if(value === 0 || value ===''){
+    if(value === 0){
         removeFromCart(updateProd)
     }
 
@@ -23,6 +25,10 @@ export default function CartProduct({prod, setValidCart}) {
         console.log('test', updateProd)
         addToCart(updateProd)
     }
+}
+
+function handleClick(){
+  removeFromCart(prod)
 }
 
   
@@ -47,6 +53,7 @@ export default function CartProduct({prod, setValidCart}) {
                 }
               </div>
             </div>
+            <RxCross1 className="absolute z-10 right-2 cursor-pointer" onClick={handleClick}/>
         </CardBody>
         <Divider/>
         <CardFooter>

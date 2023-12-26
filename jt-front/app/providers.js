@@ -32,12 +32,10 @@ export function Providers({children}) {
     }
 
     function addToCart(product){
-      console.log('add', product)
 
       let isItemInCart = cart.products.find(prod => prod.id === product.id)
 
       if(isItemInCart){
-        console.log('added quantity to', cart)
         setCart({
           ...cart,
           products:cart.products.map(prod=>{
@@ -45,7 +43,6 @@ export function Providers({children}) {
           }),
         })
       }else{
-        console.log('added to', cart)
         setCart({
           ...cart,
           products: [...cart.products, product]
@@ -89,11 +86,6 @@ export function Providers({children}) {
       }
     
     }, [updated])
-
-    useEffect(()=>{
-      console.log(cart)
-      
-    }, [cart])
 
   return (
     <NextUIProvider navigate={router.push}>

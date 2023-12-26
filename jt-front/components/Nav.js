@@ -27,23 +27,25 @@ export default function Nav() {
               className="sm:hidden"
             />
             <NavbarBrand className="mr-4">
-              <Logo/>
+              <Link href="/">
+                <Logo/>
+              </Link>
             </NavbarBrand>
           </NavbarContent>
 
         <NavbarContent className="hidden sm:flex gap-6" justify="center">
           <NavbarItem>
-            <Link color="foreground" isBlock className="font-semibold" href="#">
+            <Link color="foreground" isBlock className="font-semibold" href="/">
               Accueil
             </Link>
           </NavbarItem>
           <NavbarItem isActive>
-            <Link href="#" aria-current="page" isBlock className="font-semibold" color="PRIMARY">
+            <Link href="/products" aria-current="page" isBlock className="font-semibold" color="PRIMARY">
               Produits
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link color="foreground" isBlock className="font-semibold" href="#">
+            <Link color="foreground" isBlock className="font-semibold" href="/promo">
               Offres Speciales
             </Link>
           </NavbarItem>
