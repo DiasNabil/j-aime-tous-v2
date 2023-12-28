@@ -1,12 +1,20 @@
 'use client'
-
-import CheckoutFom from '@/components/checkout/CheckoutForm';
-import {Elements} from '@stripe/react-stripe-js';
-import {loadStripe} from '@stripe/stripe-js';
-import { Fragment, useContext, useEffect, useState } from 'react';
 import { CartContext } from '../providers';
-import { Accordion, AccordionItem, Card, CardBody, CardHeader, Divider, Image } from '@nextui-org/react';
+import {loadStripe} from '@stripe/stripe-js'
+import CheckoutFom from '@/components/checkout/CheckoutForm';
+import { Fragment, useContext, useEffect, useState } from 'react';
+import { Accordion, AccordionItem, Card, CardBody, CardHeader, Divider, Image, Skeleton } from '@nextui-org/react';
 import formatPrice from '@/utils/formatPrice';
+import dynamic from 'next/dynamic';
+
+const Elements = dynamic(
+    () => import('@stripe/react-stripe-js').then(mod => mod.Elements),
+    {
+        loading: () => <Skeleton className='w-[50%] h-[100%] rounded-md'/>
+    }
+)
+
+
 
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
@@ -43,7 +51,9 @@ export default function CheckoutPage(){
             <Card className='md:w-[50%] p-2'>
                 <CardHeader className='flex flex-col'>
                     <small className='text-start w-full text-small text-default-500'>Montant a payer</small>
-                    <p className='text-start w-full font-bold text-xl'>{formatPrice(cart.total)} KMF</p>
+                    <Skeleton isLoaded={cart.total !== 0} className='text-start w-full'>
+                        <p className='text-start w-full font-bold text-xl'>{formatPrice(cart.total)} KMF</p>
+                    </Skeleton>
                 </CardHeader>
 
                 <CardBody>

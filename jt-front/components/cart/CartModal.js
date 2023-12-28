@@ -14,7 +14,7 @@ export default function CartModal({isOpen, onOpenChange}) {
         classNames={
           {
             footer: 'flex justify-between items-center ',
-            body: 'w-full flex justify-center text-center my-4'
+            body: 'w-full flex text-center my-4'
           }
         } 
         placement="center"
@@ -35,9 +35,8 @@ export default function CartModal({isOpen, onOpenChange}) {
                 cart.items > 0 ? 
                 cart.products.map(prod => {
                   return (
-                    <Suspense key={prod.id} fallback={<Skeleton/>}>
                       <CartProduct prod={prod} setValidCart={setValidCart}/>
-                    </Suspense>
+
                   )
                 }): 
                 "Votre panier est vide :("

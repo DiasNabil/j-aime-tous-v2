@@ -2,12 +2,16 @@
 
 import { CartContext } from "@/app/providers";
 import { Badge, Button } from "@nextui-org/react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CgShoppingCart } from "react-icons/cg";
 
 
 export default function CartButton({onOpen}){
-    const {cart} = useContext(CartContext)
+    const {cart, updateCart} = useContext(CartContext)
+
+    useEffect(()=>{
+      updateCart()
+    }, [])
 
     return( 
         <Badge content={cart.items} color="primary" isInvisible={cart.items > 0 ? false : true} showOutline={cart.items > 0 ? true : false}>

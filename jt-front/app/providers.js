@@ -31,6 +31,16 @@ export function Providers({children}) {
       setCart({...cart, items: items, total: total})
     }
 
+    function resetCart(){
+      setCart({
+        products: [],
+        items: 0,
+        total: 0,
+      })
+
+      setUpdate(true)
+    }
+
     function addToCart(product){
 
       let isItemInCart = cart.products.find(prod => prod.id === product.id)
@@ -53,7 +63,6 @@ export function Providers({children}) {
     }
 
     function removeFromCart(product){
-      console.log('remove', product)
       const productToRemove = cart.products.find(prod => prod.id === product.id)
 
       if(productToRemove){
@@ -66,6 +75,7 @@ export function Providers({children}) {
       setUpdate(true)
 
     }
+
 
     useEffect(()=>{
       if(typeof window !== 'undefined'){
@@ -87,9 +97,11 @@ export function Providers({children}) {
     
     }, [updated])
 
+
+
   return (
     <NextUIProvider navigate={router.push}>
-    <CartContext.Provider value={{cart, setCart, addToCart, removeFromCart}}>
+    <CartContext.Provider value={{cart, setCart, addToCart, removeFromCart, updateCart, resetCart}}>
       {children}
     </CartContext.Provider>
     </NextUIProvider>

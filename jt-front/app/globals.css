@@ -24,6 +24,6 @@ h2{
     font-weight: bolder;
 }
 
-p, span, h1, h2, h3 {
+p, h1, h2, h3 {
     text-transform: capitalize;
 }

@@ -8,13 +8,14 @@ import {
     useElements
 } from "@stripe/react-stripe-js";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
 export default function CheckoutFom(){
     const stripe = useStripe();
     const elements = useElements();
     const[invoiceInput, setInvoiceInput] = useState(null)
-    const {cart} = useContext(CartContext)
+    const {cart, setCart, updateCart, resetCart} = useContext(CartContext)
     const [message, setMessage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [data, setData] = useState({
@@ -26,6 +27,8 @@ export default function CheckoutFom(){
       paymentMethod: '',
       shipping: '',
     })
+    const [shippingCost, setShippingCost] = useState(2500)
+    const router = useRouter()
 
     useEffect(()=>{
       async function getInput(){
@@ -33,8 +36,22 @@ export default function CheckoutFom(){
         setInvoiceInput(data.data)
       }
 
+
       getInput()
     }, [])
+
+    useEffect(()=>{
+      updateCart()
+      
+      if(data.shipping === 'livraison'){
+        setCart(prev => {
+          return {
+            ...prev, 
+            total: prev.total + shippingCost
+          }
+        })
+      }
+    }, [data.shipping])
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -53,11 +70,13 @@ export default function CheckoutFom(){
               redirect: 'if_required',
             });
           
-            console.log(payment)
             if(payment.paymentIntent?.status === 'succeeded'){
-              console.log('ok')
+              
               axios.post('http://localhost:3000/api/invoices', {data: {...data, cart: cart, status: 'payée' }})
-              .then(res=> console.log(res))
+              .then(res=> {
+                  resetCart()
+                  router.push(`/confirmation/${res.data.data.id}`)
+              })
             }
             // This point will only be reached if there is an immediate error when
             // confirming the payment. Otherwise, your customer will be redirected to
@@ -75,7 +94,10 @@ export default function CheckoutFom(){
         
         }else{
           axios.post('http://localhost:3000/api/invoices', {data: {...data, cart: cart, status: 'confirmée' }})
-          .then(res=> console.log(res))
+          .then(res=> {
+            resetCart()
+            router.push(`/confirmation/${res.data.data.id}`)
+            })
           
         }
           setIsLoading(false);
@@ -108,7 +130,10 @@ export default function CheckoutFom(){
             <Select name='shipping' variant="underlined" label='Selectionner un moyen de livraison' onChange={handleChange} isRequired={true}>
               {invoiceInput &&
                 invoiceInput.shipping.enum.map(ship => {
-                return <SelectItem key={ship}  value={ship}>{ship}</SelectItem>
+                return ( 
+                  <SelectItem key={ship}  value={ship}>
+                  {ship === 'livraison' ? `${ship} ${shippingCost} KMF` : ship}
+                  </SelectItem>)
                 })
               }
             </Select>

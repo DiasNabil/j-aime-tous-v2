@@ -1,10 +1,18 @@
-import ProductCard from "@/components/product/productCard"
-import formatPrice from "@/utils/formatPrice";
+//import ProductCard from "@/components/product/productCard"
+
 import setPromo from "@/utils/setPromo";
-import { Link } from "@nextui-org/react"
+import { Link, Skeleton } from "@nextui-org/react"
 import axios from "axios"
+import dynamic from "next/dynamic";
+
 import { TiArrowRight } from "react-icons/ti";
 
+const ProductCard = dynamic(
+  ()=>import('@/components/product/productCard'),
+  {
+    loading: ()=> <Skeleton />
+  }
+)
 
 async function getCategories(){
   
@@ -47,10 +55,12 @@ const promoData = getPromo()
 const bestSellersData = getBestSellers()
 const [categories, promo, bestSellers] = await Promise.all([categoriesData, promoData, bestSellersData])
 
-console
-
+console.log(categories)
   return (
     <section>
+      <div className="container">
+        <h2 className="mb-unit-xl">Categories</h2>
+      </div>
       <div className="container">
         <div className="flex justify-between mb-unit-xl">
           <h2>Promotions</h2>
@@ -79,9 +89,6 @@ console
             })
           }
         </div>
-      </div>
-      <div className="container">
-        <h2 className="mb-unit-xl">Categories</h2>
       </div>
     </section>
   )

@@ -27,7 +27,6 @@ export default function ProductCard({product}){
         }
 
         if(value > 0) {
-            console.log('test', updateProd)
             addToCart(updateProd)
         }
     }
@@ -63,7 +62,6 @@ export default function ProductCard({product}){
         <CardHeader className=" flex justify-between absolute z-10">
             {
                 prod.attributes.stock > 0 ? 
-                <Suspense fallback={<Skeleton/>}>
                 <Chip
                     size="md"
                     variant="dot"
@@ -75,9 +73,7 @@ export default function ProductCard({product}){
                 >
                     stock
                 </Chip>
-                </Suspense>
                  : 
-                 <Suspense fallback={<Skeleton/>}>
                 <Chip
                     size="md"
                     variant="dot"
@@ -89,11 +85,9 @@ export default function ProductCard({product}){
                 >
                     Rupture
                 </Chip>
-                </Suspense>
             }
             {
                 prod.attributes.promo !== null && 
-                <Suspense fallback={<Skeleton/>}>
                 <Chip
                     color="primary" 
                     variant="shadow"
@@ -105,10 +99,8 @@ export default function ProductCard({product}){
                 >
                     Promo
                 </Chip>
-                </Suspense>
             }
         </CardHeader>
-        <Suspense fallback={<Skeleton/>}>
         <CardFooter className="overflow-hidden bg-primary/40 shadow-md absolute z-10 bottom-1 rounded-md w-[calc(100%_-_10px)] px-unit-4 mb-unit-2 flex flex-col items-start">
             <div className="flex justify-between w-full">
                     <Chip 
@@ -154,7 +146,6 @@ export default function ProductCard({product}){
             }
             
         </CardFooter>
-        </Suspense>
     </Card>
     )
 }

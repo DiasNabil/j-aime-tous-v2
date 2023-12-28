@@ -12,10 +12,10 @@ export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
-    'Accueil', 
-    'Produits', 
-    'Offres Speciales',
-    'Contactez-nous'
+    {name: 'Accueil', href: '/'}, 
+    {name: 'Produits', href: '/products'}, 
+    {name:'Offres Speciales', href: '/promo'},
+    {name:'Contactez-nous', href: 'https://wa.me/2693471400'}
   ];
 
     return (
@@ -84,12 +84,13 @@ export default function Nav() {
           <NavbarMenuItem key={`${item}-${index}`} className="py-2">
             <Link
               className="w-full font-semibold"
-              color={item == 'Produits'? "primary" : "foreground"}
-              href="#"
+              color={item.name == 'Produits'? "primary" : "foreground"}
               size="lg"
               isBlock 
+              href={item.href}
+              isExternal= {item.name === 'Contactez-nous'}
             >
-              {item}
+              {item.name}
             </Link>
           </NavbarMenuItem>
         ))}
