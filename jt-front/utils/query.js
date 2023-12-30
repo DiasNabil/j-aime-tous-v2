@@ -1,7 +1,7 @@
 import setPromo from "./setPromo"
 
 const { default: axios } = require("axios")
-const domainUrl = process.env.NEXT_PUBLIC_URL
+const domainUrl = process.env.NEXT_PUBLIC_DOMAIN
 
 export async function getCategories(){
   

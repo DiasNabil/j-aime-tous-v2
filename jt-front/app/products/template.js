@@ -15,7 +15,7 @@ export const ProductsContext = createContext([
     ()=>{}
   ])
 
-  const domainUrl = process.env.NEXT_PUBLIC_URL
+  const domainUrl = process.env.NEXT_PUBLIC_DOMAIN
 
 export default function Template({children}){
     const [cat, setCat] = useState(null)

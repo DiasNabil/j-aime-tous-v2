@@ -11,7 +11,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
-const domainUrl = process.env.NEXT_PUBLIC_URL
+const domainUrl = process.env.NEXT_PUBLIC_DOMAIN
 
 export default function CheckoutFom(){
     const stripe = useStripe();

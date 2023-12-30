@@ -1,5 +1,6 @@
 //import ProductCard from "@/components/product/productCard"
 
+import Hero from "@/components/home/hero";
 import { getBestSellers, getCategories, getPromo } from "@/utils/query";
 import { Button, Link, Skeleton } from "@nextui-org/react"
 import dynamic from "next/dynamic";
@@ -26,7 +27,8 @@ const [categories,{products: promo}, bestSellers] = await Promise.all([categorie
 
   return (
     <section>
-      <div className="container">
+    <div className="container">
+        <Hero/>
         <h2 className="mb-unit-md">Categories</h2>
         <div className="flex flex-wrap gap-3 p-2">
           {

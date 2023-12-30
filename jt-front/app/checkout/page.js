@@ -18,7 +18,7 @@ const Elements = dynamic(
 
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
-const domainUrl = process.env.NEXT_PUBLIC_URL
+const domainUrl = process.env.NEXT_PUBLIC_DOMAIN
 
 export default function CheckoutPage(){
 
