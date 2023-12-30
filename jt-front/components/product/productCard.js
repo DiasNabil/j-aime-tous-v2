@@ -3,10 +3,10 @@
 import { CartContext } from "@/app/providers"
 import formatPrice from "@/utils/formatPrice"
 import { Button, Card, CardFooter, CardHeader, Chip, Image, Input, Skeleton } from "@nextui-org/react"
-import { Suspense, useContext, useEffect, useState } from "react"
+import { Suspense, forwardRef, useContext, useEffect, useState } from "react"
 
 
-export default function ProductCard({product}){
+const ProductCard = forwardRef(({product}, ref)=>{
     const [input, setInput] = useState(0)
     const {cart, addToCart, removeFromCart} = useContext(CartContext)
     const [prod , setProd] = useState({
@@ -51,8 +51,11 @@ export default function ProductCard({product}){
 
 
 
+
+
     return (
-        <Card key={prod.id} radius="sm" isFooterBlurred className="overflow-visible border-none items-center" >
+        <Skeleton isLoaded={product} className="p-4">
+        <Card key={prod.id} radius="sm" isFooterBlurred className="overflow-visible border-none items-center" ref={ref} >
         <Image 
             alt={prod.attributes.name} 
             className="object-cover mt-8 mb-20"  
@@ -110,6 +113,7 @@ export default function ProductCard({product}){
                             base: "border-none bg-primary/50",
                             content: "font-semibold"
                         }}
+                        size="sm"
                     >
                         <span className="font-bold">KMF </span> 
                         {
@@ -117,6 +121,23 @@ export default function ProductCard({product}){
                             formatPrice(prod.attributes.promo) : formatPrice(prod.attributes.price)
                         }
                     </Chip> 
+                    {
+                        prod.attributes.promo !== null && 
+                        <Chip 
+                        color="primary" 
+                        variant="shadow"
+                        classNames={{
+                            base: "border-none bg-primary/50",
+                            content: "font-semibold"
+                        }}
+                        size="sm"
+                    >
+                    <div className="line-through decoration-2">
+                        <span className="font-bold">KMF </span> 
+                        { formatPrice(prod.attributes.price) }
+                    </div>
+                    </Chip> 
+                    }
             </div>
             <p className="font-normal tracking-wide text-white my-2.5 lg:my-2 text-xl lg:text-medium">{prod.attributes.name}</p>
             {
@@ -147,5 +168,8 @@ export default function ProductCard({product}){
             
         </CardFooter>
     </Card>
+    </Skeleton>
     )
-}
+})
+
+export default ProductCard

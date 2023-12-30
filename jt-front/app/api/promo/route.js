@@ -1,8 +1,14 @@
-export async function GET() {
+const strapiUrl = process.env.STRAPI_URL
 
-    const res = await fetch('http://localhost:1337/api/promos?populate=*', { cache: 'no-store' })
+export async function POST(request) {
+    const data = await request.json()
+    const limit = data.data.limit
 
-    const data = await res.json()
+
+    const res = await fetch(`${strapiUrl}/api/promos?populate=*&pagination[start]=0&pagination[limit]=${limit}`, { cache: 'no-store' })
+    const products = await res.json()
+    const total = products.meta.pagination.total
     
-    return Response.json(data.data)
+    return Response.json({products: products.data, total: total})
+
 }

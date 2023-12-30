@@ -18,6 +18,7 @@ const Elements = dynamic(
 
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+const domainUrl = process.env.NEXT_PUBLIC_URL
 
 export default function CheckoutPage(){
 
@@ -27,7 +28,7 @@ export default function CheckoutPage(){
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch(`http://localhost:3000/api/create-payment-intent`, {
+        fetch(`${domainUrl}/api/create-payment-intent`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ total: cart.total}),
@@ -95,11 +96,12 @@ export default function CheckoutPage(){
                 </CardBody>
             </Card>
             {
-                clientSecret && (
+                clientSecret ? 
                     <Elements options={options} stripe={stripePromise}>
                         <CheckoutFom  className='md:w-[50%] p-2' />
                     </Elements>
-                )
+                : 
+                <Skeleton className='w-full md:w-[50%] h-[40vh] rounded-md'/>
             }
         </div>
         </section>

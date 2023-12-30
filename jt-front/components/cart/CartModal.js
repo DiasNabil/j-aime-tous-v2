@@ -50,7 +50,7 @@ export default function CartModal({isOpen, onOpenChange}) {
                 </p>
                 {
                   cart.items > 0 ? 
-                  <Button as={Link} href='/checkout' color="primary" className="font-semibold" isDisabled={validCart}>
+                  <Button as={Link} href='/checkout' color="primary" onPress={onClose} className="font-semibold" isDisabled={validCart}>
                     Valider Panier
                   </Button>
                   : 

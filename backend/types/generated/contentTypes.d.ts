@@ -683,12 +683,13 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     singularName: 'category';
     pluralName: 'categories';
     displayName: 'Categories';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Name: Attribute.String;
+    name: Attribute.String;
     slug: Attribute.UID;
     products: Attribute.Relation<
       'api::category.category',

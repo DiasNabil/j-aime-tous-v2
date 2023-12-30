@@ -2,9 +2,10 @@ import formatPrice from "@/utils/formatPrice"
 import { Card, CardBody, Divider } from "@nextui-org/react"
 import axios from "axios"
 
+const domainUrl = process.env.NEXT_PUBLIC_URL
 
 export async function getOrder(id) {
-    const data = await axios.post('http://localhost:3000/api/invoiceById', {
+    const data = await axios.post(`${domainUrl}/api/invoiceById`, {
         data: {
         id
         }

@@ -1,7 +1,7 @@
 'use client'
 
 import { CartContext } from "@/app/providers";
-import { Button, Card, Input, Modal, ModalContent, Select, SelectItem, useDisclosure } from "@nextui-org/react";
+import { Button, Card, Input, Select, SelectItem} from "@nextui-org/react";
 import {
     PaymentElement,
     useStripe,
@@ -10,6 +10,8 @@ import {
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
+
+const domainUrl = process.env.NEXT_PUBLIC_URL
 
 export default function CheckoutFom(){
     const stripe = useStripe();
@@ -30,9 +32,11 @@ export default function CheckoutFom(){
     const [shippingCost, setShippingCost] = useState(2500)
     const router = useRouter()
 
+    useEffect(()=>{console.log(isLoading)}, [isLoading])
+
     useEffect(()=>{
       async function getInput(){
-        const data = await axios.get('http://localhost:3000/api/invoiceInput')
+        const data = await axios.get(`${domainUrl}/api/invoiceInput`)
         setInvoiceInput(data.data)
       }
 
@@ -72,7 +76,7 @@ export default function CheckoutFom(){
           
             if(payment.paymentIntent?.status === 'succeeded'){
               
-              axios.post('http://localhost:3000/api/invoices', {data: {...data, cart: cart, status: 'payée' }})
+              axios.post(`${domainUrl}/api/invoices`, {data: {...data, cart: cart, status: 'payée' }})
               .then(res=> {
                   resetCart()
                   router.push(`/confirmation/${res.data.data.id}`)
@@ -92,15 +96,20 @@ export default function CheckoutFom(){
               }
             }
         
-        }else{
-          axios.post('http://localhost:3000/api/invoices', {data: {...data, cart: cart, status: 'confirmée' }})
-          .then(res=> {
+        }else {
+          const res = await axios.post(`${domainUrl}/api/invoices`, {data: {...data, cart: cart, status: 'confirmée' }})
+          if(res.status === 200){
+
             resetCart()
             router.push(`/confirmation/${res.data.data.id}`)
-            })
+            
+          }else{
+            setMessage("Une erreur est survenue.");
+          }
+
           
         }
-          setIsLoading(false);
+
     }
 
     const paymentElementOptions = {
@@ -148,10 +157,10 @@ export default function CheckoutFom(){
               data.paymentMethod === 'carte bancaire' && 
               <Card className="mt-4 p-4">
               <PaymentElement id="payment-element" options={paymentElementOptions}/>
-              {message && <Card id="payment-message" className="mt-4 bg-danger border-none p-2 text-white">{message}</Card>}
               </Card>
             }
 
+            {message && <Card id="payment-message" className="mt-4 bg-danger border-none p-2 text-white">{message}</Card>}
             <Button color="primary" isDisabled={!stripe || !elements} variant="shadow" className="font-bold" isLoading={isLoading} type="submit">
               Valider le paiment
             </Button>

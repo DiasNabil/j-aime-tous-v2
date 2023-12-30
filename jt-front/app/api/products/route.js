@@ -1,10 +1,18 @@
-//const data = await axios.get('http://localhost:3000/api/products')
 
-export async function GET() {
+const strapiUrl = process.env.STRAPI_URL
 
-    const res = await fetch('http://localhost:1337/api/products?populate=*', { cache: 'no-store' })
+export async function POST(request) {
+    const data = await request.json()
+    const limit = data.data.limit
+    const sort = data.data.sort
+    const cat = data.data.cat
+    const promo = data.data.promo
 
-    const data = await res.json()
+
+    const res = await fetch(`${strapiUrl}/api/products?populate=*&pagination[start]=0&pagination[limit]=${limit}${cat !== null ? `&filters[category][slug][$eq]=${cat}` : ''}${promo !== false ? `&filters[promo][id][$null]` : ''}&sort=price:${sort}`, { cache: 'no-store' })
+    const products = await res.json()
+    const total = products.meta.pagination.total
+
     
-    return Response.json(data)
+    return Response.json({products: products.data, total: total})
 }
